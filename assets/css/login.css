@@ -14,7 +14,7 @@
   background: url('/assets/images/login_title.png') no-repeat center;
 }
 
-/* 默认去登录盒子隐藏 */
+/* 注册表单隐藏 */
 .reg-box {
   display: none;
 }
@@ -24,7 +24,7 @@
   justify-content: flex-end;
 }
 
-/* 小图标 */
+/* 字体图标 */
 .layui-form-item {
   position: relative;
 }
