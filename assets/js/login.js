@@ -33,19 +33,34 @@ $(function () {
     };
     // console.log(formdata);
     // 发送请求
-    $.post('http://ajax.frontend.itheima.net/api/reguser', formdata, function (
-      res
-    ) {
+    $.post('/api/reguser', formdata, function (res) {
+      // if (res.status === 0) {
+      //   // console.log(res.message);
+      //   layer.msg(res.message);
+      //   $('.reg-box').hide();
+      //   $('.login-box').show();
+      //   $('#form-reg')[0].reset();
+      // } else {
+      //   // console.log(res.message);
+      //   layer.msg(res.message);
+      // }
+      layui.layer.msg(res.message);
+      res.status === 0 && $('#link-reg').click();
+    });
+  });
+
+  // 发送登录请求
+  $('#form-login').on('submit', function (e) {
+    e.preventDefault();
+    var formdata = $(this).serialize();
+
+    $.post('/api/login', formdata, function (res) {
       if (res.status === 0) {
-        // console.log(res.message);
-        layer.msg(res.message);
-        $('.reg-box').hide();
-        $('.login-box').show();
-        $('#form-reg')[0].reset();
-      } else {
-        // console.log(res.message);
-        layer.msg(res.message);
+        window.location.href = './index.html';
+        res.token.length !== 0 &&
+          window.localStorage.setItem('token', res.token);
       }
+      layui.layer.msg(res.message);
     });
   });
 });
