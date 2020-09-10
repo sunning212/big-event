@@ -34,6 +34,7 @@ $(function () {
     // console.log(formdata);
     // 发送请求
     $.post('/api/reguser', formdata, function (res) {
+      console.log(res);
       // if (res.status === 0) {
       //   // console.log(res.message);
       //   layer.msg(res.message);
