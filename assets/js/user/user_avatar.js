@@ -29,4 +29,25 @@ $(function () {
       .attr('src', newImgURL) // 重新设置图片路径
       .cropper(options); // 重新初始化裁剪区域
   });
+
+  // 更换头像
+  $('#sure').click(function () {
+    var dataURL = $image
+      .cropper('getCroppedCanvas', {
+        width: 100,
+        height: 100,
+      })
+      .toDataURL('image/png');
+
+    $.ajax({
+      type: 'post',
+      url: '/my/update/avatar',
+      data: { avatar: dataURL },
+      success: function (res) {
+        if (res.status === 0) {
+          window.parent.getUserInfo();
+        }
+      },
+    });
+  });
 });
